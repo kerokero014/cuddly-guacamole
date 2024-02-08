@@ -1,0 +1,13 @@
+
+{
+    "firstName": "Kevin",
+    "lastName": "Mendoza",
+    "age": 27,
+    "email": "test@gmail.com",
+    "phone": "123-456-7890",
+    "JobTitle": "Software Engineer",
+    "Experience": "5 years",
+    "Education": "Bachelors",
+    "password": "123456"
+
+}
