@@ -94,4 +94,23 @@ const updateUser = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, getSingleUser, createNewUser, updateUser };
+const deleteUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const result = await mongodb
+      .getDb()
+      .db('WS')
+      .collection('users')
+      .deleteOne({ _id: new ObjectId(userId) });
+    if (result.acknowledged) {
+      res.status(200).json({ message: 'User deleted successfully' });
+    } else {
+      throw new Error('User deletion failed');
+    }
+  } catch (error) {
+    console.error('Error in deleteUser function:', error);
+    res.status(500).json({ error: 'Error occurred while deleting user' });
+  }
+};
+
+module.exports = { getUsers, getSingleUser, createNewUser, updateUser, deleteUser };
