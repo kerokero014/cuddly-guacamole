@@ -7,4 +7,8 @@ router.get('/', userController.getUsers); //get all
 
 router.get('/:id', userController.getSingleUser); // get one
 
+router.post('/', userController.createNewUser); // create one
+
+router.put('/:id', userController.updateUser); // update one
+
 module.exports = router;
