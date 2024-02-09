@@ -1,5 +1,5 @@
 const mongodb = require('../db/connect');
-const ObjectId = require('mongodb').ObjectId;
+const {ObjectId} = require('mongodb');
 
 const getUsers = async (req, res) => {
   try {
@@ -16,24 +16,21 @@ const getUsers = async (req, res) => {
 
 const getSingleUser = async (req, res) => {
   try {
-    const userId = new ObjectId(req.params.id);
-    console.log(userId);
+    const userId = req.params.id;
+    console.log('User ID:', userId);
 
-    const result = await mongodb.db('WS').collection('users').findOne({ _id: userId });
-    const lists = await result.toArray();
-    
-    res.setHeader('Content-Type', 'application/json');
-    console.log('lists:', lists);
+    const result = await mongodb.getDb().db('WS').collection('users').findOne({ _id: new ObjectId(userId) });
 
-    if (lists.length > 0) {
-      res.status(200).json(lists[0]);
+    if (result) {
+      res.status(200).json(result);
     } else {
       res.status(404).json({ error: 'User not found' });
     }
   } catch (error) {
-    console.error('Error in getSingle function:', error);
+    console.error('Error in getSingleUser function:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 
 module.exports = { getUsers, getSingleUser };
