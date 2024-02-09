@@ -9,13 +9,8 @@ const routes = require('./routes');
 
 //Middleware
 app.use(cors());
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use('/', routes);
-
-//Test route
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
 
 // Start server + connect to DB
 mongodb.initDb((err) => {
