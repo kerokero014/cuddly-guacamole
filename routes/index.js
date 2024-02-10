@@ -5,4 +5,6 @@ router.use('/users', require('./userRoutes'));
 
 router.use('/applications', require('./applicationRoutes'));
 
+router.use('/', require('./swagger'));
+
 module.exports = router;
