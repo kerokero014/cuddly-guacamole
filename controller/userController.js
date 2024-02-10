@@ -9,7 +9,7 @@ const getUsers = async (req, res) => {
     const lists = await result.toArray();
 
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
+    res.status(201).json(lists);
   } catch (error) {
     console.error('Error in getUsers function:', error);
     res.status(500).send('Internal Server Error');
@@ -28,7 +28,7 @@ const getSingleUser = async (req, res) => {
       .findOne({ _id: new ObjectId(userId) });
 
     if (result) {
-      res.status(200).json(result);
+      res.status(201).json(result);
     } else {
       res.status(404).json({ error: 'User not found' });
     }
@@ -105,7 +105,7 @@ const deleteUser = async (req, res) => {
       .collection('users')
       .deleteOne({ _id: new ObjectId(userId) });
     if (result.acknowledged) {
-      res.status(200).json({ message: 'User deleted successfully' });
+      res.status(201).json({ message: 'User deleted successfully' });
     } else {
       throw new Error('User deletion failed');
     }

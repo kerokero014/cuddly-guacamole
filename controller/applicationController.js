@@ -7,7 +7,7 @@ const getAllApplications = async (req, res) => {
     const lists = await result.toArray();
 
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
+    res.status(201).json(lists);
   } catch (error) {
     console.error('Error in getAllApplications function:', error);
     res.status(500).send('Internal Server Error');
@@ -26,7 +26,7 @@ const getApplicationbyId = async (req, res) => {
       .findOne({ _id: new ObjectId(applicationId) });
 
     if (result) {
-      res.status(200).json(result);
+      res.status(201).json(result);
     } else {
       res.status(404).json({ error: 'Application not found' });
     }
@@ -101,7 +101,7 @@ const updateApplicationbyId = async (req, res) => {
       .collection('applications')
       .updateOne({ _id: new ObjectId(applicationId) }, { $set: application });
 
-    res.status(200).json(result);
+    res.status(201).json(result);
   } catch (error) {
     console.error('Error in updateApplicationbyId function:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -118,7 +118,7 @@ const deleteApplicationbyId = async (req, res) => {
       .collection('applications')
       .deleteOne({ _id: new ObjectId(applicationId) });
 
-    res.status(200).json(result);
+    res.status(201).json(result);
   } catch (error) {
     console.error('Error in deleteApplicationbyId function:', error);
     res.status(500).json({ error: 'Internal Server Error' });
