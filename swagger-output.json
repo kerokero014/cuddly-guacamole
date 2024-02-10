@@ -8,7 +8,7 @@
   "host": "jobapplication-km.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/users/": {
