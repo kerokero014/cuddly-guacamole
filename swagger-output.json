@@ -1,0 +1,392 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My API",
+    "description": "Job Application API",
+    "version": "1.0.0"
+  },
+  "host": "jobapplication-km.onrender.com",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/users/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "age": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "JobTitle": {
+                  "example": "any"
+                },
+                "Experience": {
+                  "example": "any"
+                },
+                "Education": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "age": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "JobTitle": {
+                  "example": "any"
+                },
+                "Experience": {
+                  "example": "any"
+                },
+                "Education": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/applications/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/applications/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Job": {
+                  "example": "any"
+                },
+                "Company": {
+                  "example": "any"
+                },
+                "Location": {
+                  "example": "any"
+                },
+                "Date": {
+                  "example": "any"
+                },
+                "Salary": {
+                  "example": "any"
+                },
+                "Benefits": {
+                  "example": "any"
+                },
+                "Requisites": {
+                  "example": "any"
+                },
+                "Experience": {
+                  "example": "any"
+                },
+                "Skills": {
+                  "example": "any"
+                },
+                "Description": {
+                  "example": "any"
+                },
+                "website": {
+                  "example": "any"
+                },
+                "interviewDate": {
+                  "example": "any"
+                },
+                "interviewTime": {
+                  "example": "any"
+                },
+                "applicationStatus": {
+                  "example": "any"
+                },
+                "interviewStatus": {
+                  "example": "any"
+                },
+                "offerStatus": {
+                  "example": "any"
+                },
+                "interviewFeedback": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Job": {
+                  "example": "any"
+                },
+                "Company": {
+                  "example": "any"
+                },
+                "Location": {
+                  "example": "any"
+                },
+                "Salary": {
+                  "example": "any"
+                },
+                "Benefits": {
+                  "example": "any"
+                },
+                "Requirements": {
+                  "example": "any"
+                },
+                "Experience": {
+                  "example": "any"
+                },
+                "Skills": {
+                  "example": "any"
+                },
+                "Description": {
+                  "example": "any"
+                },
+                "website": {
+                  "example": "any"
+                },
+                "interviewDate": {
+                  "example": "any"
+                },
+                "interviewTime": {
+                  "example": "any"
+                },
+                "applicationStatus": {
+                  "example": "any"
+                },
+                "interviewStatus": {
+                  "example": "any"
+                },
+                "offerStatus": {
+                  "example": "any"
+                },
+                "interviewFeedback": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
