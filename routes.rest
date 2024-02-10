@@ -1,4 +1,29 @@
-GET  http://localhost:8080/users
+GET  http://localhost:8080/applications
+
+  
+//PUT  http://localhost:8080/applications HTTP/1.1
+//Content-Type: application/json
+//
+//{
+//  "Job": "Web Developer",
+//  "Company": "dOTerra",
+//  "Location": "Lehi, UT",
+//  "Salary": "$120,000",
+//  "Benefits": "Health, Dental, Vision, 401k",
+//  "Requirements": "Bachelor's Degree in Computer Science",
+//  "Experience": "4 years",
+//  "Skills": "Java, Python, C++, HTML, CSS, JavaScript, React, Angular, AWS, C#, PHP",
+//  "Description": "Develop software for Google's products and services",
+//  "website": "www.doterra.com",
+//  "interviewDate": "2024-02-12",
+//  "interviewTime": "10:00 AM",
+//  "applicationStatus": "Pending",
+//  "interviewStatus": "Pending",
+//  "offerStatus": "Pending",
+//  "interviewFeedback": "N/A",
+//  "owner": "65c53b94eec742a374429fca"
+//}
+
 
 //PUT http://localhost:8080/users/65c58edd61ba1f7c938394a5 HTTP/1.1
 //Content-Type: application/json
