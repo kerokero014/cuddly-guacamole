@@ -1,12 +1,8 @@
-// cretes, deletes, updates users controller 
-
-const mongodb = require('../db/connect');
-const { ObjectId } = require('mongodb');
+const User = require('../models/userModel');
 
 const getUsers = async (req, res) => {
   try {
-    const result = await mongodb.getDb().db('WS').collection('users').find();
-    const lists = await result.toArray();
+    const lists = await User.getAllUsers();
 
     res.setHeader('Content-Type', 'application/json');
     res.status(201).json(lists);
@@ -19,16 +15,10 @@ const getUsers = async (req, res) => {
 const getSingleUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    console.log('User ID:', userId);
+    const singleUser = await User.getUserById(userId);
 
-    const result = await mongodb
-      .getDb()
-      .db('WS')
-      .collection('users')
-      .findOne({ _id: new ObjectId(userId) });
-
-    if (result) {
-      res.status(201).json(result);
+    if (singleUser) {
+      res.status(201).json(singleUser);
     } else {
       res.status(404).json({ error: 'User not found' });
     }
@@ -40,7 +30,7 @@ const getSingleUser = async (req, res) => {
 
 const createNewUser = async (req, res) => {
   try {
-    const user = {
+    const userData = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       age: req.body.age,
@@ -49,16 +39,11 @@ const createNewUser = async (req, res) => {
       JobTitle: req.body.JobTitle,
       Experience: req.body.Experience,
       Education: req.body.Education,
-      Education: req.body.Education,
       password: req.body.password
     };
-    const result = await mongodb.getDb().db('WS').collection('users').insertOne(user);
+    const newUser = await User.create(userData);
 
-    if (result.acknowledged) {
-      res.status(201).json({ message: 'User created successfully' });
-    } else {
-      throw new Error('User creation failed');
-    }
+    res.status(201).json({ message: 'User created successfully', user: newUser });
   } catch (error) {
     console.error('Error in createNewUser function:', error);
     res.status(500).json({ error: 'Error occurred while creating user' });
@@ -68,29 +53,11 @@ const createNewUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    const user = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      age: req.body.age,
-      email: req.body.email,
-      phone: req.body.phone,
-      JobTitle: req.body.JobTitle,
-      Experience: req.body.Experience,
-      Education: req.body.Education,
-      Education: req.body.Education,
-      password: req.body.password
-    };
-    const result = await mongodb
-      .getDb()
-      .db('WS')
-      .collection('users')
-      .updateOne({ _id: new ObjectId(userId) }, { $set: user });
-    if (result.acknowledged) {
-      res.status(201).json({ message: 'User updated successfully' });
-    } else {
-      throw new Error('User update failed');
-    }
-  } catch {
+    const userData = req.body;
+    const updatedUser = await User.update(userId, userData);
+
+    res.status(200).json({ message: 'User updated successfully', user: updatedUser });
+  } catch (error) {
     console.error('Error in updateUser function:', error);
     res.status(500).json({ error: 'Error occurred while updating user' });
   }
@@ -99,16 +66,9 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    const result = await mongodb
-      .getDb()
-      .db('WS')
-      .collection('users')
-      .deleteOne({ _id: new ObjectId(userId) });
-    if (result.acknowledged) {
-      res.status(201).json({ message: 'User deleted successfully' });
-    } else {
-      throw new Error('User deletion failed');
-    }
+    await User.delete(userId);
+
+    res.status(200).json({ message: 'User deleted successfully' });
   } catch (error) {
     console.error('Error in deleteUser function:', error);
     res.status(500).json({ error: 'Error occurred while deleting user' });
