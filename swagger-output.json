@@ -147,7 +147,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Created"
+            "description": "OK"
           },
           "500": {
             "description": "Internal Server Error"
@@ -166,7 +166,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Created"
+            "description": "OK"
           },
           "500": {
             "description": "Internal Server Error"
