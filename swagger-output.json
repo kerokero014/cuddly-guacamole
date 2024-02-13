@@ -146,7 +146,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Created"
           },
           "500": {
@@ -165,7 +165,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Created"
           },
           "500": {
@@ -237,16 +237,10 @@
                 "Location": {
                   "example": "any"
                 },
-                "Date": {
-                  "example": "any"
-                },
                 "Salary": {
                   "example": "any"
                 },
                 "Benefits": {
-                  "example": "any"
-                },
-                "Requisites": {
                   "example": "any"
                 },
                 "Experience": {
@@ -384,6 +378,16 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }
