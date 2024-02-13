@@ -1,4 +1,12 @@
-GET  http://localhost:8080/applications
+//DELETE  http://localhost:8080/applications/65cad4735b062004a9270fb8 
+
+
+//GET  http://localhost:8080/applications
+
+
+
+
+
 
 
 //post  http://localhost:8080/users/65caca26282a34ac362f1a78 HTTP/1.1
@@ -16,8 +24,9 @@ GET  http://localhost:8080/applications
 //  "password": "24689"
 //}
 
-
-
+//PUT  http://localhost:8080/applications/65cad4735b062004a9270fb8 HTTP/1.1
+//Content-Type: application/json
+//
 //{
 //  "Job": "Web Developer",
 //  "Company": "dOTerra",

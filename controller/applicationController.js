@@ -1,10 +1,8 @@
-const mongodb = require('../db/connect');
-const { ObjectId } = require('mongodb');
+const application = require('../models/appModel');
 
 const getAllApplications = async (req, res) => {
   try {
-    const result = await mongodb.getDb().db('WS').collection('applications').find();
-    const lists = await result.toArray();
+    const lists = await application.getApplications();
 
     res.setHeader('Content-Type', 'application/json');
     res.status(201).json(lists);
@@ -19,11 +17,7 @@ const getApplicationbyId = async (req, res) => {
     const applicationId = req.params.id;
     console.log('Application ID:', applicationId);
 
-    const result = await mongodb
-      .getDb()
-      .db('WS')
-      .collection('applications')
-      .findOne({ _id: new ObjectId(applicationId) });
+    const result = await application.getById(applicationId);
 
     if (result) {
       res.status(201).json(result);
@@ -40,14 +34,12 @@ const createApplicationbyUserId = async (req, res) => {
   try {
     const userId = req.params.id;
 
-    const application = {
+    const applicationInfo = {
       Job: req.body.Job,
       Company: req.body.Company,
       Location: req.body.Location,
-      Date: req.body.Date,
       Salary: req.body.Salary,
       Benefits: req.body.Benefits,
-      Requisites: req.body.Requisites,
       Experience: req.body.Experience,
       Skills: req.body.Skills,
       Description: req.body.Description,
@@ -61,7 +53,7 @@ const createApplicationbyUserId = async (req, res) => {
       owner: userId
     };
 
-    const result = await mongodb.getDb().db('WS').collection('applications').insertOne(application);
+    const result = await application.createApplication(applicationInfo);
 
     res.status(201).json(result);
   } catch (error) {
@@ -75,7 +67,7 @@ const updateApplicationbyId = async (req, res) => {
     const applicationId = req.params.id;
     const userId = req.params.userId;
 
-    const application = {
+    const applicationInfo = {
       Job: req.body.Job,
       Company: req.body.Company,
       Location: req.body.Location,
@@ -95,34 +87,32 @@ const updateApplicationbyId = async (req, res) => {
       owner: userId
     };
 
-    const result = await mongodb
-      .getDb()
-      .db('WS')
-      .collection('applications')
-      .updateOne({ _id: new ObjectId(applicationId) }, { $set: application });
+    const result = await application.updateApplication(applicationId, applicationInfo); // Call the method directly
 
     res.status(201).json(result);
   } catch (error) {
     console.error('Error in updateApplicationbyId function:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-}
+};
 
 const deleteApplicationbyId = async (req, res) => {
   try {
     const applicationId = req.params.id;
 
-    const result = await mongodb
-      .getDb()
-      .db('WS')
-      .collection('applications')
-      .deleteOne({ _id: new ObjectId(applicationId) });
+    const result = await application.deleteApplication(applicationId);
 
     res.status(201).json(result);
   } catch (error) {
     console.error('Error in deleteApplicationbyId function:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-}
+};
 
-module.exports = { getAllApplications, getApplicationbyId, createApplicationbyUserId, updateApplicationbyId, deleteApplicationbyId};
+module.exports = {
+  getAllApplications,
+  getApplicationbyId,
+  createApplicationbyUserId,
+  updateApplicationbyId,
+  deleteApplicationbyId
+};
