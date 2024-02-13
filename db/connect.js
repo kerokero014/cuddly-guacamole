@@ -1,6 +1,6 @@
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
-const MongoClient = require('mongodb').MongoClient;
 
 let _db;
 
@@ -9,9 +9,9 @@ const initDb = (callback) => {
     console.log('Db is already initialized!');
     return callback(null, _db);
   }
-  MongoClient.connect(process.env.MONGODB_URI)
-    .then((client) => {
-      _db = client;
+  mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      _db = mongoose.connection;
       callback(null, _db);
     })
     .catch((err) => {
