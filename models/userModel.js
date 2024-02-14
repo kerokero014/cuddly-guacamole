@@ -1,11 +1,16 @@
-const { getDb } = require('../db/connect');
-const { ObjectId } = require('mongodb');
+const mongoose = require('mongoose');
+const UserSchema = require('../models/userSchema');
 
 const User = {
   async getAllUsers() {
-    const result = await getDb().db('WS').collection('users').find();
-    const lists = await result.toArray();
-    return lists;
+    try {
+      const UserModel = mongoose.model('User', UserSchema);
+      const users = await UserModel.find();
+      return users;
+    } catch (error) {
+      console.error('Error in getAllUsers function:', error);
+      throw error; // Re-throw the error to handle it elsewhere if needed
+    }
   },
 
   async getUserById(userId) {

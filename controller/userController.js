@@ -3,7 +3,7 @@ const User = require('../models/userModel');
 const getUsers = async (req, res) => {
   try {
     const lists = await User.getAllUsers();
-
+    
     res.setHeader('Content-Type', 'application/json');
     res.status(201).json(lists);
   } catch (error) {
