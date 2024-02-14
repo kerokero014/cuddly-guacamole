@@ -1,27 +1,19 @@
+const { body } = require('express-validator');
 
-function validateUserData(userData) {
-  if (!userData.firstName || !userData.lastName || !userData.email || !userData.password) {
-    return false;
-  }
+const userRules = () => {
+  return [
+    body('firstName').notEmpty().isString(),
+    body('lastName').notEmpty().isString(),
+    body('age').notEmpty().isInt({ min: 18, max: 100 }),
+    body('email').notEmpty().isEmail(),
+    body('phone').optional().isMobilePhone('any'),
+    body('jobTitle').notEmpty().isString(),
+    body('experience').optional().isInt({ min: 0 }),
+    body('education').optional().isString(),
+    body('password')
+      .notEmpty()
+      .isLength({ min: 6, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1})
+  ];
+};
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(userData.email)) {
-    return false;
-  }
-
-  if (!Number.isInteger(userData.age) || userData.age <= 0) {
-    return false;
-  }
-
-  if (userData.phone && !/^\d{10}$/.test(userData.phone)) {
-    return false;
-  }
-
-  if (userData.jobTitle && userData.jobTitle.trim() === '') {
-    return false;
-  }
-
-  return true;
-}
-
-module.exports = { validateUserData };
+module.exports = { userRules };
