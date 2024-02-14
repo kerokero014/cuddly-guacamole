@@ -1,6 +1,6 @@
 const body = require('express-validator');
 
-const appValidation = () => {
+const appRules = () => {
   return [
     body('Job')
       .notEmpty()
@@ -46,4 +46,4 @@ const appValidation = () => {
   ];
 };
 
-module.exports = { appValidation };
+module.exports = { appRules };
