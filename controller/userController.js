@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const userData = require('../models/userSchema');
 
 const getUsers = async (req, res) => {
   try {
@@ -30,17 +31,7 @@ const getSingleUser = async (req, res) => {
 
 const createNewUser = async (req, res) => {
   try {
-    const userData = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      age: req.body.age,
-      email: req.body.email,
-      phone: req.body.phone,
-      JobTitle: req.body.JobTitle,
-      Experience: req.body.Experience,
-      Education: req.body.Education,
-      password: req.body.password
-    };
+    const userData = req.body;
     const newUser = await User.create(userData);
 
     res.status(201).json({ message: 'User created successfully', user: newUser });
@@ -53,18 +44,8 @@ const createNewUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    const userData = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      age: req.body.age,
-      email: req.body.email,
-      phone: req.body.phone,
-      JobTitle: req.body.JobTitle,
-      Experience: req.body.Experience,
-      Education: req.body.Education,
-      Education: req.body.Education,
-      password: req.body.password
-    };
+    const userData = req.body;
+    
     const updatedUser = await User.update(userId, userData);
 
     res.status(200).json({ message: 'User updated successfully', user: updatedUser });

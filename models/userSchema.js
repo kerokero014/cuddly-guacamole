@@ -1,43 +1,16 @@
-const mongoose = require('mongoose');
+function createUser(req) {
+  const userData = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    age: req.body.age,
+    email: req.body.email,
+    phone: req.body.phone,
+    jobTitle: req.body.jobTitle,
+    experience: req.body.experience,
+    education: req.body.education,
+    password: req.body.password
+  };
+  return userData;
+}
 
-const userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
-  age: {
-    type: Number,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true // Ensure uniqueness of email addresses
-  },
-  phone: {
-    type: String,
-    required: true
-  },
-  jobTitle: {
-    type: String,
-    required: true
-  },
-  experience: {
-    type: String,
-    required: true
-  },
-  education: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  }
-});
-
-module.exports = userSchema;
+module.exports = createUser;

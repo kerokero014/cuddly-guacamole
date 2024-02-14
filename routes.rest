@@ -1,28 +1,22 @@
 //DELETE  http://localhost:8080/applications/65cad4735b062004a9270fb8 
 
 
-GET  http://localhost:8080/users
+//GET  http://localhost:8080/users
 
+PUT  http://localhost:8080/users/65cd2803060fd9ded17e39db HTTP/1.1
+Content-Type: application/json
 
-
-
-
-
-
-//post  http://localhost:8080/users/65caca26282a34ac362f1a78 HTTP/1.1
-//Content-Type: application/json
-//
-//{
-//  "firstName": "Thomas",
-//  "lastName": "Edison",
-//  "age": 80,
-//  "email": "test@gmail.com",
-//  "phone": "N/A",
-//  "JobTitle": "Electrical Engineer",
-//  "Experience": "50 years",
-//  "Education": "Bachelors",
-//  "password": "24689"
-//}
+{
+  "firstName": "Thomas",
+  "lastName": "the Train",
+  "age": 80,
+  "email": "test@gmail.com",
+  "phone": "N/A",
+  "JobTitle": "Mechanical Engineer",
+  "Experience": "90 years",
+  "Education": "Bachelors",
+  "password": "24689"
+}
 
 //PUT  http://localhost:8080/applications/65cad4735b062004a9270fb8 HTTP/1.1
 //Content-Type: application/json
