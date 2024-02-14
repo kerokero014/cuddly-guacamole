@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const UserValidation = require('../utils/user-validation')
 
 const getUsers = async (req, res) => {
   try {
