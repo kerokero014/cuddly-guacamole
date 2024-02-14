@@ -12,7 +12,7 @@ const userRules = () => {
     body('education').optional().isString(),
     body('password')
       .notEmpty()
-      .isLength({ min: 6, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1})
+      .isLength({ min: 6, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1 })
   ];
 };
 
