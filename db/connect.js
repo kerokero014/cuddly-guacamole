@@ -10,8 +10,9 @@ const initDb = (callback) => {
     return callback(null, _db);
   }
   mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-      _db = mongoose.connection;
+    .then((db) => {
+      console.log('MongoDB connected');
+      _db = db;
       callback(null, _db);
     })
     .catch((err) => {
