@@ -69,7 +69,7 @@ const updateUser = async (req, res) => {
     
     const updatedUser = await User.update(userId, userData);
 
-    res.status(200).json({ message: 'User updated successfully', user: updatedUser });
+    res.status(204).json({ message: 'User updated successfully', user: updatedUser });
   } catch (error) {
     console.error('Error in updateUser function:', error);
     res.status(500).json({ error: 'Error occurred while updating user' });

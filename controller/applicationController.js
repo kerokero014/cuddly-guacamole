@@ -89,7 +89,7 @@ const updateApplicationbyId = async (req, res) => {
 
     const result = await application.updateApplication(applicationId, applicationInfo); // Call the method directly
 
-    res.status(201).json(result);
+    res.status(204).json(result);
   } catch (error) {
     console.error('Error in updateApplicationbyId function:', error);
     res.status(500).json({ error: 'Internal Server Error' });
