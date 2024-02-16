@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const appValidator = require('../utils/app-validation');
+const appValidator = require('../Middleware/app-validation');
 const applicationController = require('../controller/applicationController');
 
 
