@@ -1,6 +1,22 @@
-//DELETE  http://localhost:8080/users/65cd29e7d1c9c40c82e7f166
+//DELETE  http://localhost:8080/users/
 
-//GET  http://localhost:8080/users
+GET http://localhost:8080/users
+
+
+POST  http://localhost:8080/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "ANy",
+  "lastName": "",
+  "age": 30,
+  "email": "test",
+  "phone": "123-456-7890",
+  "JobTitle": "Software Engineer",
+  "Experience": "5 years",
+  "Education": "Bachelors",
+  "password": "123456"
+}
 
 //POST http://localhost:8080/users HTTP/1.1
 //Content-Type: application/json

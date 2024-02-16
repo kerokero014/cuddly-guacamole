@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const UserValidation = require('../utils/user-validation')
+const UserValidation = require('../Middleware/user-validation')
 
 const getUsers = async (req, res) => {
   try {
@@ -45,7 +45,7 @@ const createNewUser = async (req, res) => {
 
     const newUser = await User.create(userData);
 
-    res.status(201).json({ message: 'User created successfully', user: newUser });
+    res.status(204).json({ message: 'User created successfully', user: newUser });
   } catch (error) {
     console.error('Error in createNewUser function:', error);
     res.status(500).json({ error: 'Error occurred while creating user' });
