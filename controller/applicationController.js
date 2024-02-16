@@ -1,5 +1,7 @@
 const application = require('../models/appModel');
 
+const { validationResult } = require('express-validator');
+
 const getAllApplications = async (req, res) => {
   try {
     const lists = await application.getApplications();
@@ -32,6 +34,11 @@ const getApplicationbyId = async (req, res) => {
 
 const createApplicationbyUserId = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const userId = req.params.id;
 
     const applicationInfo = {
@@ -64,6 +71,11 @@ const createApplicationbyUserId = async (req, res) => {
 
 const updateApplicationbyId = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const applicationId = req.params.id;
     const userId = req.params.userId;
 
