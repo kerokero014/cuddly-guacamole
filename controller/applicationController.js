@@ -1,5 +1,4 @@
 const application = require('../models/appModel');
-
 const { validationResult } = require('express-validator');
 
 const getAllApplications = async (req, res) => {
