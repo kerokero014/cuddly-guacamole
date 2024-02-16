@@ -1,10 +1,10 @@
 const User = require('../models/userModel');
-const UserValidation = require('../Middleware/user-validation')
+const { validationResult } = require('express-validator');
 
 const getUsers = async (req, res) => {
   try {
     const lists = await User.getAllUsers();
-    
+
     res.setHeader('Content-Type', 'application/json');
     res.status(201).json(lists);
   } catch (error) {
@@ -31,6 +31,11 @@ const getSingleUser = async (req, res) => {
 
 const createNewUser = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const userData = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -54,6 +59,11 @@ const createNewUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const userId = req.params.id;
     const userData = {
       firstName: req.body.firstName,
@@ -66,7 +76,7 @@ const updateUser = async (req, res) => {
       education: req.body.education,
       password: req.body.password
     };
-    
+
     const updatedUser = await User.update(userId, userData);
 
     res.status(204).json({ message: 'User updated successfully', user: updatedUser });
