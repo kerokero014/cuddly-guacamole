@@ -6,15 +6,15 @@ POST http://localhost:8080/users HTTP/1.1
 Content-Type: application/json
 
 {
-  "firstName": "Julian",
-  "lastName": "Aaron",
-  "age": 30,
-  "email": "johndoe@example.com",
-  "phone": "1234567890",
-  "jobTitle": "Software-Engineer",
-  "experience": 5,
-  "education": "Bachelors",
-  "password": "password123"
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25,
+  "email": "janesmith@example.com",
+  "phone": "9876543210",
+  "jobTitle": "Data Analyst",
+  "experience": 2,
+  "education": "Bachelor of Science",
+  "password": "secret123"
 }
 
 
