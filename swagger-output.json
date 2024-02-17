@@ -50,7 +50,7 @@
                 "phone": {
                   "example": "any"
                 },
-                "jobTitle": {
+                "JobTitle": {
                   "example": "any"
                 },
                 "experience": {
@@ -132,7 +132,7 @@
                 "phone": {
                   "example": "any"
                 },
-                "jobTitle": {
+                "JobTitle": {
                   "example": "any"
                 },
                 "experience": {

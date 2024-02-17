@@ -1,10 +1,10 @@
 {
-  "firstName": "Saul",
-  "lastName": "Mendoza",
-  "age": 27,
+  "firstName": "Julian",
+  "lastName": "Aaron",
+  "age": 25,
   "email": "test@gmail.com",
   "phone": "123-456-7890",
-  "JobTitle": "Databse Engineer",
+  "JobTitle": "Software Engineer",
   "Experience": "2 years",
   "Education": "Bachelors",
   "password": "24689"
