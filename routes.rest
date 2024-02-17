@@ -1,5 +1,5 @@
 //DELETE  http://localhost:8080/users/
-GET http://localhost:8080/users
+//GET http://localhost:8080/users
 
 
 POST http://localhost:8080/users HTTP/1.1
@@ -11,7 +11,7 @@ Content-Type: application/json
   "age": 30,
   "email": "johndoe@example.com",
   "phone": "1234567890",
-  "jobTitle": "Software Engineer",
+  "jobTitle": "Software-Engineer",
   "experience": 5,
   "education": "Bachelors",
   "password": "password123"

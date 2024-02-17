@@ -27,7 +27,7 @@ const Appls = {
       .collection('applications')
       .updateOne({ _id: new ObjectId(applicationId) }, { $set: application });
     return result;
-  }, 
+  },
 
   async deleteApplication(applicationId) {
     const result = await getDb()

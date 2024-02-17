@@ -7,16 +7,12 @@
   },
   "host": "jobapplication-km.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["https"],
   "paths": {
     "/users/": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "201": {
             "description": "Created"
@@ -183,9 +179,7 @@
     "/applications/": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "201": {
             "description": "Created"
