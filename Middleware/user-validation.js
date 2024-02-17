@@ -8,11 +8,9 @@ const userRules = () => {
     body('email').notEmpty().isEmail(),
     body('phone').optional().isMobilePhone('any'),
     body('JobTitle').notEmpty().isString(),
-    body('experience').isInt({ min: 0 }),
-    body('education').isString(),
-    body('password')
-      .notEmpty()
-      .isString()
+    body('experience').notEmpty.isInt({ min: 0 }),
+    body('education').notEmpty.isString(),
+    body('password').notEmpty().isString()
   ];
 };
 
