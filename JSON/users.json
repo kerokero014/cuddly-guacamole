@@ -1,11 +1,11 @@
 {
-  "firstName": "Julian",
-  "lastName": "Aaron",
+  "firstName": "Jhonny",
+  "lastName": "Smith",
   "age": 25,
-  "email": "test@gmail.com",
-  "phone": "1234567890",
-  "JobTitle": "Software Engineer",
-  "Experience": "2",
-  "Education": "Bachelors",
-  "password": "24689"
+  "email": "janesmith@example.com",
+  "phone": "9876543210",
+  "jobTitle": "Data Analyst",
+  "experience": 2,
+  "education": "Bachelor of Science",
+  "password": "secret123"
 }
