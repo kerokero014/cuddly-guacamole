@@ -15,6 +15,11 @@ const getUsers = async (req, res) => {
 
 const getSingleUser = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const userId = req.params.id;
     const singleUser = await User.getUserById(userId);
 
@@ -88,6 +93,11 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const userId = req.params.id;
     await User.delete(userId);
 
