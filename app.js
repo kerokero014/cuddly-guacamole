@@ -30,7 +30,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/', requiresAuth(), routes);
 
-
 // Start server + connect to DB
 initDb((err) => {
   if (err) {
