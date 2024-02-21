@@ -17,6 +17,8 @@ const config = {
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE
 };
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
 
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
@@ -27,8 +29,7 @@ app.get('/', (req, res) => {
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/', requiresAuth(), routes);
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
+
 
 // Start server + connect to DB
 initDb((err) => {
