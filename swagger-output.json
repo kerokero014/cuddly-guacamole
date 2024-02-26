@@ -7,12 +7,16 @@
   },
   "host": "jobapplication-km.onrender.com",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": [
+    "https"
+  ],
   "paths": {
     "/users/": {
       "get": {
         "description": "",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -46,7 +50,7 @@
                 "phone": {
                   "example": "any"
                 },
-                "JobTitle": {
+                "jobTitle": {
                   "example": "any"
                 },
                 "experience": {
@@ -90,6 +94,9 @@
           "201": {
             "description": "Created"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -128,7 +135,7 @@
                 "phone": {
                   "example": "any"
                 },
-                "JobTitle": {
+                "jobTitle": {
                   "example": "any"
                 },
                 "experience": {
@@ -170,6 +177,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -179,7 +189,9 @@
     "/applications/": {
       "get": {
         "description": "",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "201": {
             "description": "Created"
