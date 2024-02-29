@@ -65,7 +65,7 @@ app.use(auth(config));
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
-app.use('/api', jwtCheck, requiresAuth(), routes);
+app.use('/', jwtCheck, requiresAuth(), routes);
 
 // Start server & connect to DB
 initDb((err) => {
