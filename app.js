@@ -4,10 +4,10 @@ const cors = require('cors');
 const { initDb } = require('./db/connect');
 const routes = require('./routes');
 const { auth, requiresAuth } = require('express-openid-connect');
-const jwksRsa = require('jwks-rsa');
-const jwt = require('jsonwebtoken');
 
-// Load environment variables
+//const jwksRsa = require('jwks-rsa');
+//const jwt = require('jsonwebtoken');
+
 require('dotenv').config();
 
 const app = express();
@@ -36,6 +36,7 @@ const config = {
 };
 
 // Routes
+
 app.use(auth(config));
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
