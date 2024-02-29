@@ -8,7 +8,6 @@ const { initDb } = require('./db/connect'); // Import the initDb function from y
 const routes = require('./routes');
 const { auth, requiresAuth } = require('express-openid-connect');
 
-
 // Auth0
 const config = {
   authRequired: false,
@@ -19,9 +18,7 @@ const config = {
   issuerBaseURL: process.env.ISSUER_BASE
 };
 
-
-const jwt = require('jsonwebtoken'); // Import jsonwebtoken module
-
+const jwt = require('jsonwebtoken');
 // Middleware for verifying JWT
 const jwtCheck = (req, res, next) => {
   const token = req.headers.authorization;
@@ -29,18 +26,22 @@ const jwtCheck = (req, res, next) => {
     return res.status(401).json({ message: 'No token provided' });
   }
 
-  jwt.verify(token, jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `${process.env.ISSUER_BASE}/.well-known/jwks.json`
-  }), (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ message: 'Unauthorized: Invalid token' });
+  jwt.verify(
+    token,
+    jwksRsa.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: `${process.env.ISSUER_BASE}/.well-known/jwks.json`
+    }),
+    (err, decoded) => {
+      if (err) {
+        return res.status(401).json({ message: 'Unauthorized: Invalid token' });
+      }
+      req.user = decoded;
+      next();
     }
-    req.user = decoded;
-    next();
-  });
+  );
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
