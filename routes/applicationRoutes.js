@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const appValidator = require('../middleware/app-validation');
+const appValidator = require('../validation/app-validation');
 const applicationController = require('../controller/applicationController');
 
 router.get('/', applicationController.getAllApplications);
