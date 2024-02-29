@@ -25,31 +25,6 @@ if (missingEnvVars.length > 0) {
 app.use(cors());
 app.use(bodyParser.json());
 
-// JWT Verification Middleware
-const jwtCheck = (req, res, next) => {
-  const token = req.headers.authorization;
-  if (!token) {
-    return res.status(401).json({ message: 'No token provided' });
-  }
-
-  jwt.verify(
-    token,
-    jwksRsa.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: `${process.env.ISSUER_BASE}/.well-known/jwks.json`
-    }),
-    (err, decoded) => {
-      if (err) {
-        return res.status(401).json({ message: 'Unauthorized: Invalid token' });
-      }
-      req.user = decoded;
-      next();
-    }
-  );
-};
-
 // Auth0 Configuration
 const config = {
   authRequired: false,
@@ -65,7 +40,7 @@ app.use(auth(config));
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
-app.use('/', jwtCheck, requiresAuth(), routes);
+app.use('/', requiresAuth(), routes);
 
 // Start server & connect to DB
 initDb((err) => {
