@@ -1,25 +1,31 @@
 const express = require('express');
-const app = express();
-require('dotenv').config();
-const port = process.env.PORT || 8080;
-const cors = require('cors');
 const bodyParser = require('body-parser');
-const { initDb } = require('./db/connect'); // Import the initDb function from your Mongoose connection file
+const cors = require('cors');
+const { initDb } = require('./db/connect');
 const routes = require('./routes');
 const { auth, requiresAuth } = require('express-openid-connect');
-
-// Auth0
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: process.env.SECRET,
-  baseURL: process.env.BASE_URL,
-  clientID: process.env.CLIENT_ID,
-  issuerBaseURL: process.env.ISSUER_BASE
-};
-
+const jwksRsa = require('jwks-rsa');
 const jwt = require('jsonwebtoken');
-// Middleware for verifying JWT
+
+// Load environment variables
+require('dotenv').config();
+
+const app = express();
+const port = process.env.PORT || 8080;
+
+// Validate required environment variables
+const requiredEnvVars = ['SECRET', 'BASE_URL', 'CLIENT_ID', 'ISSUER_BASE'];
+const missingEnvVars = requiredEnvVars.filter((envVar) => !process.env[envVar]);
+if (missingEnvVars.length > 0) {
+  console.error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
+  process.exit(1);
+}
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// JWT Verification Middleware
 const jwtCheck = (req, res, next) => {
   const token = req.headers.authorization;
   if (!token) {
@@ -44,27 +50,31 @@ const jwtCheck = (req, res, next) => {
   );
 };
 
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
+// Auth0 Configuration
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASE_URL,
+  clientID: process.env.CLIENT_ID,
+  issuerBaseURL: process.env.ISSUER_BASE
+};
 
-// req.isAuthenticated is provided from the auth router
+// Routes
+app.use(auth(config));
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
+app.use('/api', jwtCheck, requiresAuth(), routes);
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(jwtCheck);
-app.use('/', requiresAuth(), routes);
-
-// Start server + connect to DB
+// Start server & connect to DB
 initDb((err) => {
   if (err) {
     console.error('Error connecting to database:', err);
+    process.exit(1);
   } else {
     app.listen(port, () => {
-      console.log(`Database connected and Server is running on port ${port}`);
+      console.log(`Server is running on port ${port}`);
     });
   }
 });
