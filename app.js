@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
-app.use('/', requiresAuth() ,routes);
+app.use('/', requiresAuth(), routes);
 
 //requiresAuth()
 // Start server & connect to DB
