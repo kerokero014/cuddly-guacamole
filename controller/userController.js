@@ -50,7 +50,8 @@ const createNewUser = async (req, res) => {
       jobTitle: req.body.jobTitle,
       experience: req.body.experience,
       education: req.body.education,
-      password: req.body.password
+      password: req.body.password,
+      role: req.body.role
     };
 
     const newUser = await User.create(userData);
@@ -79,7 +80,8 @@ const updateUser = async (req, res) => {
       jobTitle: req.body.jobTitle,
       experience: req.body.experience,
       education: req.body.education,
-      password: req.body.password
+      password: req.body.password,
+      role: req.body.role
     };
 
     const updatedUser = await User.update(userId, userData);

@@ -8,7 +8,9 @@
   "experience": 2,
   "education": "Bachelor of Science",
   "password": "secret123",
-  "admin": true,
-  "employee": false,
-  "manager": false
+  "role": {
+    "admin": true,
+    "employee": false,
+    "manager": false
+  }
 }

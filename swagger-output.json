@@ -61,6 +61,9 @@
                 },
                 "password": {
                   "example": "any"
+                },
+                "role": {
+                  "example": "any"
                 }
               }
             }
@@ -145,6 +148,9 @@
                   "example": "any"
                 },
                 "password": {
+                  "example": "any"
+                },
+                "role": {
                   "example": "any"
                 }
               }
