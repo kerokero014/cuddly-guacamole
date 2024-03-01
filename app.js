@@ -31,7 +31,6 @@ app.get('/', (req, res) => {
 
 app.use('/', requiresAuth(), routes);
 
-//requiresAuth()
 // Start server & connect to DB
 initDb((err) => {
   if (err) {
