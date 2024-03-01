@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { initDb } = require('./db/connect');
 const routes = require('./routes');
-const { auth, requiresAuth } = require('express-openid-connect');
+//const { auth, requiresAuth } = require('express-openid-connect');
 
 //const jwksRsa = require('jwks-rsa');
 //const jwt = require('jsonwebtoken');
@@ -30,9 +30,9 @@ app.use(bodyParser.json());
 // Routes
 
 //app.use(auth(config));
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
+//app.get('/', (req, res) => {
+//  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+//});
 app.use('/' , routes);
 
 //requiresAuth()
