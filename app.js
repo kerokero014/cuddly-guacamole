@@ -25,6 +25,7 @@ const config = {
 
 // Routes
 app.use(auth(config));
+
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });

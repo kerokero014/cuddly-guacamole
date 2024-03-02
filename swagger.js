@@ -5,7 +5,8 @@ const doc = {
     title: 'My API',
     description: 'Job Application API'
   },
-  host: 'jobapplication-km.onrender.com'
+  host: 'jobapplication-km.onrender.com',
+  schemes: ['https'],
 };
 
 const outputFile = './swagger-output.json';
