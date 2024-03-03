@@ -3,6 +3,10 @@ const { validationResult } = require('express-validator');
 
 const getAllApplications = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const lists = await application.getApplications();
 
     res.setHeader('Content-Type', 'application/json');
@@ -109,6 +113,10 @@ const updateApplicationbyId = async (req, res) => {
 
 const deleteApplicationbyId = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const applicationId = req.params.id;
 
     const result = await application.deleteApplication(applicationId);

@@ -3,6 +3,10 @@ const { validationResult } = require('express-validator');
 
 const getUsers = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const lists = await User.getAllUsers();
 
     res.setHeader('Content-Type', 'application/json');
