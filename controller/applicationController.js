@@ -19,6 +19,11 @@ const getAllApplications = async (req, res) => {
 
 const getApplicationbyId = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const applicationId = req.params.id;
     console.log('Application ID:', applicationId);
 
